@@ -1,20 +1,7 @@
-console.log("Olá Mundo!");
-
-// Criando um novo elemento 
-let novoElemento = document.createElement('h1');
-// Alterando o conteúdo de texto do elemento
-novoElemento.innerText = 'Hello, World! English! (Inglês) Ok?!';
-// Selecionando o elemento body
-let elementoBody = document.body;
-// Colocando o novo elemento no body
-elementoBody.appendChild(novoElemento);
-
-novoElemento.style.backgroundColor = 'blue';
-novoElemento.style.color = 'yellow';
-
+// A partir daqui, o código do seu jogo
 class Personagem {
     constructor(classe, vida, ataque, defesa) {
-        this.nome = classe;  // O nome do personagem agora é igual à sua classe
+        this.nome = classe; // O nome do personagem agora é igual à sua classe
         this.classe = classe;
         this.vida = vida;
         this.ataque = ataque;
@@ -22,7 +9,6 @@ class Personagem {
         this.vidaOriginal = vida;
     }
 
-    // Frases de efeito específicas para cada classe, escolhidas aleatoriamente
     gerarFraseDeEfeito(ataque, oponente) {
         const frases = {
             'Mago': [
@@ -56,11 +42,8 @@ class Personagem {
     }
 
     atacar(oponente, ataqueAleatorio) {
-        // Ajuste no cálculo do dano para evitar que seja zero
         const dano = Math.max(1, ataqueAleatorio - oponente.defesa);
         oponente.vida -= dano;
-
-        // Retorna a frase de efeito do ataque
         return this.gerarFraseDeEfeito(dano, oponente);
     }
 
@@ -110,14 +93,13 @@ class Batalha {
 
     atualizarStatus() {
         const status = `<br>${this.personagem1.nome} - Vida: ${this.personagem1.vida}/${this.personagem1.vidaOriginal}<br>` +
-                       `${this.personagem2.nome} - Vida: ${this.personagem2.vida}/${this.personagem2.vidaOriginal}<br>`;
+            `${this.personagem2.nome} - Vida: ${this.personagem2.vida}/${this.personagem2.vidaOriginal}<br>`;
         document.getElementById("logs").innerHTML += status;
     }
 }
 
 let batalha;
 
-// Função para criar personagens aleatórios, com nomes de classes iguais
 function criarPersonagemAleatorio() {
     const classes = ['Mago', 'Guerreiro', 'Arqueiro', 'Samurai', 'Paladino'];
     const classeEscolhida = classes[Math.floor(Math.random() * classes.length)];
@@ -127,14 +109,12 @@ function criarPersonagemAleatorio() {
     return new Personagem(classeEscolhida, vida, ataque, defesa);
 }
 
-// Função que inicializa a batalha
 function iniciarJogo() {
     const personagem1 = criarPersonagemAleatorio();
     let personagem2 = criarPersonagemAleatorio();
 
-    // Verificar se as classes são iguais e evitar repetição de nomes
     while (personagem1.classe === personagem2.classe) {
-        personagem2 = criarPersonagemAleatorio(); // Evita personagens iguais
+        personagem2 = criarPersonagemAleatorio();
     }
 
     batalha = new Batalha(personagem1, personagem2);
@@ -147,4 +127,18 @@ function avancarTurno() {
     batalha.avancar();
 }
 
+// Inicializa o jogo
 iniciarJogo();
+
+console.log("Olá Mundo!");
+// Criando um novo elemento 
+let novoElemento = document.createElement('h1');
+// Alterando o conteúdo de texto do elemento
+novoElemento.innerText = 'Hello, World! English! (Inglês) Ok?!';
+// Selecionando o elemento body
+let elementoBody = document.body;
+// Colocando o novo elemento no body
+elementoBody.appendChild(novoElemento);
+
+novoElemento.style.backgroundColor = 'blue';
+novoElemento.style.color = 'yellow';
