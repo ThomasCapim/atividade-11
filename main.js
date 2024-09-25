@@ -1,3 +1,34 @@
+// Função para criar os elementos HTML necessários na página
+function criarInterface() {
+    const body = document.body;
+
+    // Criação de um container para os logs de batalha
+    const divLogs = document.createElement("div");
+    divLogs.id = "logs";
+    divLogs.style.fontFamily = "Arial, sans-serif";
+    divLogs.style.margin = "20px";
+    divLogs.style.padding = "10px";
+    divLogs.style.border = "1px solid black";
+    divLogs.style.backgroundColor = "#f4f4f4";
+    divLogs.style.height = "200px";
+    divLogs.style.overflowY = "scroll";
+    body.appendChild(divLogs);
+
+    // Criação do botão para avançar os turnos
+    const botaoAvancar = document.createElement("button");
+    botaoAvancar.id = "botaoAvancar";
+    botaoAvancar.innerText = "Avançar Turno";
+    botaoAvancar.style.display = "block";
+    botaoAvancar.style.marginTop = "20px";
+    botaoAvancar.style.padding = "10px 20px";
+    botaoAvancar.style.fontSize = "16px";
+    botaoAvancar.onclick = avancarTurno;
+    body.appendChild(botaoAvancar);
+}
+
+// Criando os elementos antes de iniciar o jogo
+criarInterface();
+
 // A partir daqui, o código do seu jogo
 class Personagem {
     constructor(classe, vida, ataque, defesa) {
@@ -129,16 +160,3 @@ function avancarTurno() {
 
 // Inicializa o jogo
 iniciarJogo();
-
-console.log("Olá Mundo!");
-// Criando um novo elemento 
-let novoElemento = document.createElement('h1');
-// Alterando o conteúdo de texto do elemento
-novoElemento.innerText = 'Hello, World! English! (Inglês) Ok?!';
-// Selecionando o elemento body
-let elementoBody = document.body;
-// Colocando o novo elemento no body
-elementoBody.appendChild(novoElemento);
-
-novoElemento.style.backgroundColor = 'blue';
-novoElemento.style.color = 'yellow';
